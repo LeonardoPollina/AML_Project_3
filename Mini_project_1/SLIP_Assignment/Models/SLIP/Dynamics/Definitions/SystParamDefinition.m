@@ -53,7 +53,7 @@ function [systParamVec, systParamNames, systParamIndices] = SystParamDefinition(
     % Parameter of the model
     systParam.l_0       = 1;     % [*] uncompressed leg length
     systParam.m_0       = 30;     % [m_0] total mass
-    systParam.k         =25*systParam.g*systParam.m_0/systParam.l_0;    % [m_0*g/l_0] linear spring stiffness in the leg
+    systParam.k         = 25*systParam.g*systParam.m_0/systParam.l_0;    % [m_0*g/l_0] linear spring stiffness in the leg
     systParam.angAtt    = 0;     % [rad] angle of attack of the leg (0 = straigth downwards)
     systParam.initAngAtt    = 0;
     systParam.wr    = 0; 

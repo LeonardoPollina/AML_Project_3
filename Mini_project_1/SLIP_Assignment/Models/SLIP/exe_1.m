@@ -85,6 +85,7 @@ if (e == 1 || e == 3)
   yINp = yIN;
   zINp = zIN;
   
+  y_var = [];
   % run the simulation for the given number of steps
   for i = 1:nr_steps
     
@@ -96,7 +97,8 @@ if (e == 1 || e == 3)
     zINp = zOUT;
     
     % count the number of successful steps
-    nr_stable_steps = nr_stable_steps + 1;
+    %nr_stable_steps = nr_stable_steps + 1;
+    y_var = [y_var yOUT(3)];
     
     % check for the simulation quit conditions
     contPoint_y = yINp(contStateIndices.y) - p(systParamIndices.l_0) * cos(p(systParamIndices.angAtt));
@@ -106,6 +108,14 @@ if (e == 1 || e == 3)
       disp('           ******* HINT: try another set of parameters ******');
       break;
     end
+  end
+  
+  if length(y_var) == 1
+      nr_stable_steps = 1;
+  else
+      for step = 1:length(y_var)-1
+        nr_stable_steps = nr_stable_steps + y_var(step+1)/y_var(step);
+      end
   end
   
   if (nr_stable_steps < 10)

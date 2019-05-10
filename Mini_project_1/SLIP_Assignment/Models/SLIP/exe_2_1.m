@@ -85,6 +85,7 @@ for i = 1 : n_k
         % before falling over
         nr_steps = 20;
         nr_stable_steps = 0;
+        y_var = [];
 
         % run the simulation for the given number of steps
         for ii = 1:nr_steps
@@ -96,9 +97,11 @@ for i = 1 : n_k
             % update the initial state and go to the next step
             yIN = yOUT; 
             zIN = zOUT;
+            
+            y_var = [y_var yOUT(3)];
 
             % count the number of successful steps
-            nr_stable_steps = nr_stable_steps + 1;
+            %nr_stable_steps = nr_stable_steps + 1;
 
             % check for the simulation quit conditions
             contPoint_y = yIN(contStateIndices.y) - p(systParamIndices.l_0) * cos(p(systParamIndices.angAtt));
@@ -109,7 +112,15 @@ for i = 1 : n_k
             end
 
         end % end of simulation loop
-
+        
+        if length(y_var) == 1
+            nr_stable_steps = 1;
+        else
+            for step = 1:length(y_var)-1
+                nr_stable_steps = nr_stable_steps + abs(y_var(step+1)/y_var(step));
+            end
+        end
+        
         sim_num = sim_num + 1;
         fprintf('\n')    
         disp(['    ========== Simulation No.: ',num2str(sim_num), ' out of ' ,num2str(all_nodes), ' ============'])          
