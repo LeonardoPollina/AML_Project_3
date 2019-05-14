@@ -113,23 +113,30 @@ for i = 1 : n_k
 
         end % end of simulation loop
         
-        if length(y_var) == 1
-            nr_stable_steps = 1;
+        
+        if (length(y_var) == 1)
+            ratios_ = 0.01;
         else
-            for step = 1:length(y_var)-1
-                nr_stable_steps = nr_stable_steps + abs(y_var(step+1)/y_var(step));
+            if (y_var(end) < 0)
+                ratios_ = 0.01;
+            else
+                for step = 1:length(y_var)-1
+                    ratios_(step) = y_var(step+1)/y_var(step);
+                end
             end
         end
+        
+        score_ratios = mean(ratios_);
         
         sim_num = sim_num + 1;
         fprintf('\n')    
         disp(['    ========== Simulation No.: ',num2str(sim_num), ' out of ' ,num2str(all_nodes), ' ============'])          
-        disp([' ===> angAtt: [',num2str(angAtt(j)), '] k: [', num2str(K_sp(i)), '] ==> n_successful_steps: [',num2str(nr_stable_steps), ']'])         
+        disp([' ===> angAtt: [',num2str(angAtt(j)), '] k: [', num2str(K_sp(i)), '] ==> n_successful_steps: [',num2str(score_ratios), ']'])         
         disp('=======================================================')
 
         all_Ksps(i,j)     = K_sp(i); % to dimensionalize *m_0*g/l_0/1000
         all_angAtts(i,j)  = angAtt(j);
-        all_steps(i,j)    = nr_stable_steps;
+        all_steps(i,j)    = score_ratios;
 
     end % end of angAtt loop
 
@@ -150,7 +157,8 @@ colorbar('FontWeight','bold','FontSize',18,...
 % shg
 shading flat
 colormap(flipud(gray))
-caxis([0 20]);
+caxis;
+%caxis([0 20]);
 
     
 disp('======================================================================================');
