@@ -107,7 +107,8 @@ disp('=======================================================');
 figure   
 plot(simRES.continuousStates(3,:),'r','LineWidth', 2)
     %axis([0, 10, 0, 3])
-    
+ax = gca;
+ax.FontSize = 24;
 hold on
 yIN = ContStateDefinition;
 zIN = DiscStateDefinition;
