@@ -37,11 +37,11 @@ end
 
 for muscle = 1:length(labels_muscle)
     % We multiply by 100 just to have a real percentage of muscle activity
-    gait_cycles.(['LMuscle' labels_muscle{muscle}]).mean_activity = mean(-(100*gait_cycles.(['LMuscle' labels_muscle{muscle}]).divided));
-    gait_cycles.(['LMuscle' labels_muscle{muscle}]).std_activity = std(-(100*gait_cycles.(['LMuscle' labels_muscle{muscle}]).divided));
+    gait_cycles.(['LMuscle' labels_muscle{muscle}]).mean_activity = mean(100*gait_cycles.(['LMuscle' labels_muscle{muscle}]).divided);
+    gait_cycles.(['LMuscle' labels_muscle{muscle}]).std_activity = std(100*gait_cycles.(['LMuscle' labels_muscle{muscle}]).divided);
     
-    gait_cycles.(['RMuscle' labels_muscle{muscle}]).mean_activity = mean(-(100*gait_cycles.(['RMuscle' labels_muscle{muscle}]).divided));
-    gait_cycles.(['RMuscle' labels_muscle{muscle}]).std_activity = std(-(100*gait_cycles.(['RMuscle' labels_muscle{muscle}]).divided));
+    gait_cycles.(['RMuscle' labels_muscle{muscle}]).mean_activity = mean(100*gait_cycles.(['RMuscle' labels_muscle{muscle}]).divided);
+    gait_cycles.(['RMuscle' labels_muscle{muscle}]).std_activity = std(100*gait_cycles.(['RMuscle' labels_muscle{muscle}]).divided);
     
     % To plot
     figure();
@@ -64,7 +64,7 @@ for muscle = 1:length(labels_muscle)
     patch(fill_x,fill_y,'b','EdgeColor','none');
     alpha(.2)
     
-    legend('Left mean','Std left','Right mean','Std right','AutoUpdate','off');
+    legend({'Left mean','Std left','Right mean','Std right'},'Interpreter','latex','AutoUpdate','off');
     ax = gca;
     ax.FontSize = 24;
     
@@ -76,9 +76,10 @@ for muscle = 1:length(labels_muscle)
     title(labels_muscle{muscle});
     xline(final_percentage_stance,'k--','LineWidth',2);
     yline(0,'k--','LineWidth',2);
-    xlabel('(% Gait Cycle)');
-    ylabel('Muscle Activity (%)');
-    set(gcf, 'Position', [1 1 980 400]);
+    set(0,'defaultTextInterpreter','latex'); 
+    xlabel('\% Gait cycle');
+    ylabel('\% Muscle Activity');
+    set(gcf, 'Position', [1 1 980 300]);
     saveas(gcf,['Figures/Muscle_' labels_muscle{muscle}],'png');
 end
 %% For torques 
@@ -127,7 +128,7 @@ for torque = 1:length(labels_torque)
     patch(fill_x,fill_y,'b','EdgeColor','none');
     alpha(.2)
     
-    legend('Left mean','Std left','Right mean','Std right','AutoUpdate','off');
+    legend({'Left mean','Std left','Right mean','Std right'},'Interpreter','latex','AutoUpdate','off');
     ax = gca;
     ax.FontSize = 24;
     
@@ -139,9 +140,10 @@ for torque = 1:length(labels_torque)
     title(labels_torque{torque});
     xline(final_percentage_stance,'k--','LineWidth',2);
     yline(0,'k--','LineWidth',2);
-    xlabel('(% Gait cycle)');
-    ylabel('Torque');
-    set(gcf, 'Position', [1 1 980 400]);
+    set(0,'defaultTextInterpreter','latex'); 
+    xlabel('\% Gait cycle');
+    ylabel('Torque [N$\cdot$m]');
+    set(gcf, 'Position', [1 1 980 300]);
     saveas(gcf,['Figures/Torque_' labels_torque{torque}],'png');
 end
 %% For Angles
@@ -198,7 +200,7 @@ for angle = 1:length(labels_angle)
     patch(fill_x,fill_y,'b','EdgeColor','none');
     alpha(.2)
     
-    legend('Left mean','Std left','Right mean','Std right','AutoUpdate','off');
+    legend({'Left mean','Std left','Right mean','Std right'},'Interpreter','latex','AutoUpdate','off');
     ax = gca;
     ax.FontSize = 24;
     
@@ -210,9 +212,11 @@ for angle = 1:length(labels_angle)
     title(labels_angle{angle});
     xline(final_percentage_stance,'k--','LineWidth',2);
     yline(0,'k--','LineWidth',2);
-    xlabel('(% Gait cycle)');
+    set(0,'defaultTextInterpreter','latex'); 
+    xlabel('\% Gait cycle');
     ylabel('Angle [deg]');
-    set(gcf, 'Position', [1 1 980 400]);
+    set(gcf, 'Position', [1 1 980 300]);
     saveas(gcf,['Figures/Angle' labels_angle{angle}],'png');
 end
 
+clc;
