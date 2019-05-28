@@ -101,11 +101,11 @@ for torque = 1:length(labels_torque)
 end
 
 for torque = 1:length(labels_torque)
-    gait_cycles.(['L' labels_torque{torque} 'Torque']).mean_activity = mean(-(gait_cycles.(['L' labels_torque{torque} 'Torque']).divided));
-    gait_cycles.(['L' labels_torque{torque} 'Torque']).std_activity = std(-(gait_cycles.(['L' labels_torque{torque} 'Torque']).divided));
+    gait_cycles.(['L' labels_torque{torque} 'Torque']).mean_activity = mean(gait_cycles.(['L' labels_torque{torque} 'Torque']).divided);
+    gait_cycles.(['L' labels_torque{torque} 'Torque']).std_activity = std(gait_cycles.(['L' labels_torque{torque} 'Torque']).divided);
     
-    gait_cycles.(['R' labels_torque{torque} 'Torque']).mean_activity = mean(-(gait_cycles.(['R' labels_torque{torque} 'Torque']).divided));
-    gait_cycles.(['R' labels_torque{torque} 'Torque']).std_activity = std(-(gait_cycles.(['R' labels_torque{torque} 'Torque']).divided));
+    gait_cycles.(['R' labels_torque{torque} 'Torque']).mean_activity = mean(gait_cycles.(['R' labels_torque{torque} 'Torque']).divided);
+    gait_cycles.(['R' labels_torque{torque} 'Torque']).std_activity = std(gait_cycles.(['R' labels_torque{torque} 'Torque']).divided);
     % To plot
     figure();
     vec_idx_left = 1:1:nbr_points_to_interpolate;
