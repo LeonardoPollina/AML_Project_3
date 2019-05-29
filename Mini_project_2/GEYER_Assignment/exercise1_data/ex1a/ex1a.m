@@ -274,7 +274,7 @@ xvals = [1 2 3];
 a = yline(1.618, '--r','LineWidth',1.2,'DisplayName','Golden Ratio');
 hold on
 legend(a,'\phi','AutoUpdate','off');
-errorbar(xvals,[value1_mean value2_mean value3_mean],[value1_std value2_std value3_std], 'o')
+errorbar(xvals,[value1_mean value2_mean value3_mean],[value1_std value2_std value3_std], 'ko','LineWidth',1.2)
 hold on
 ax = gca;
 ax.FontSize = 20;
@@ -282,15 +282,15 @@ ax.FontSize = 20;
 xlim([0 4])
 ylim([0 2])
 xtick = [1; 2; 3];
-xtl1 = '$\frac{gaitcycle}{stance}$';
+xtl1 = '$\frac{gait\ cycle}{stance}$';
 xtl2 = '$\frac{stance}{swing}$';
-xtl3 = '$\frac{swing}{double support}$';
+xtl3 = '$\frac{swing}{double\ support}$';
 xticks([1 2 3])
 set(gca,'XTickLabel', {xtl1 xtl2 xtl3}, 'TickLabelInterpreter', 'latex');
 %xticklabels({'gaitcycle/\n stance','2','3'})
 yticks([0 0.5 1.0 1.5 2.0])
 yticklabels({'0','0.5','1.0','1.5','2.0'})
-
+saveas(gcf,'Golden_ratio.png')
 %%
 gaitcycle1 = [gaitcycle_left1; gaitcycle_right1];
 gaitcycle1 = mean(gaitcycle1./100)
