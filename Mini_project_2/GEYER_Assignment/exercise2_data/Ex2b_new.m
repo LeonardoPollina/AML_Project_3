@@ -2,7 +2,7 @@
 clc;
 clear;
 
-muscles = {'HAM','TA'};
+muscles = {'HAM','TA','HFL'};
 threshold = 200;
 XMIN = 0;
 XMAX = inf;
@@ -19,6 +19,9 @@ for muscle = 1:length(muscles)
     elseif strcmp(muscles{muscle},'TA')
         labels = {'SensorNoise0.02','SensorNoise0.04','StimNoise0.29','StimNoise0.58','SensorNoise0.010','SensorNoise0.019','StimNoise0.3','StimNoise0.15',};
         names = {'SensorNoise0_02','SensorNoise0_04','StimNoise0_29','StimNoise0_58','SensorNoise0_010','SensorNoise0_019','StimNoise0_3','StimNoise0_15',};
+    elseif strcmp(muscles{muscle},'HFL')
+        labels = {'SensorNoise0.055','SensorNoise0.11','StimNoise0.14','StimNoise0.28','SensorNoise0.04','SensorNoise0.08','StimNoise0.04','StimNoise0.08',};
+        names = {'SensorNoise0_055','SensorNoise0_11','StimNoise0_14','StimNoise0_28','SensorNoise0_04','SensorNoise0_09','StimNoise0_04','StimNoise0_08',};
     end
     
     for l = 1:length(labels)
