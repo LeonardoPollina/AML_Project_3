@@ -30,7 +30,7 @@ for muscle = 1:length(muscles)
             current_name = ['asym' muscles{muscle} names{l}];
         else
             current_file = ['sym' muscles{muscle} labels{l}];
-            current_name = ['asym' muscles{muscle} names{l}];
+            current_name = ['sym' muscles{muscle} names{l}];
         end
         load([current_file '.mat']);
         all_struct_noise.(muscles{muscle}).(current_name).mRFX = mRFX;
